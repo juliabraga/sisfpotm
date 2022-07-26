@@ -1,15 +1,19 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- <img alt="FPoTM logo" src="./assets/FPoTM.png" width="250" height="300"> -->
+  <ListaAtleta />
+  <FooterLink />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import FooterLink from './components/FooterLink.vue'
+import ListaAtleta from './components/ListaAtleta.vue' 
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    FooterLink,
+    ListaAtleta
   }
 }
 </script>
