@@ -1,19 +1,22 @@
 <template>
   <!-- <img alt="FPoTM logo" src="./assets/FPoTM.png" width="250" height="300"> -->
-  <ListaAtleta />
-  <FooterLink />
+  <SortearGrupos />
+  <ListaJogos />
+    <FooterLink />
 </template>
 
 <script>
 import FooterLink from './components/FooterLink.vue'
-import ListaAtleta from './components/ListaAtleta.vue' 
+import ListaJogos from './components/ListaJogos.vue'
+import SortearGrupos from './components/SortearGrupos.vue'
 
 
 export default {
   name: 'App',
   components: {
     FooterLink,
-    ListaAtleta
+    ListaJogos,
+    SortearGrupos,
   }
 }
 </script>
