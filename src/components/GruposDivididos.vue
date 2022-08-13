@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="ativar">Clica</button>
+        
         <span v-show="ativo">
             <textarea style="width: 50%;height: 100px"></textarea><br>
         </span>
