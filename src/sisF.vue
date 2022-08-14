@@ -1,8 +1,7 @@
 <template>
-  <!-- <img alt="FPoTM logo" src="./assets/FPoTM.png" width="250" height="300"> -->
+  <FooterLink />
   <SortearGrupos />
   <ListaJogos />
-    <FooterLink />
 </template>
 
 <script>
@@ -12,7 +11,7 @@ import SortearGrupos from './components/SortearGrupos.vue'
 
 
 export default {
-  name: 'App',
+  name: 'sisF',
   components: {
     FooterLink,
     ListaJogos,
@@ -22,7 +21,7 @@ export default {
 </script>
 
 <style>
-#app {
+#sisF {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

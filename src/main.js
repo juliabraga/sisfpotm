@@ -1,4 +1,4 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import sisF from './sisF.vue'
 
-createApp(App).mount('#app')
+createApp(sisF).mount('#sisF')
