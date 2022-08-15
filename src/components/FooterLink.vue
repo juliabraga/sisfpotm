@@ -1,6 +1,5 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
+  <div class="links">
     <h3>Links</h3>
     <ul>
       <li><a href="https://fpotm.net" target="_blank" rel="noopener">FPoTM.Net</a></li>

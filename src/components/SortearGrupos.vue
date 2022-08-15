@@ -1,10 +1,7 @@
 <template>
 <div>
-    <h1>
-        Digite os jogadores da categoria
-    </h1>
-    <textarea id="nomesAtletas" style="width: 50%;height: 200px"></textarea>
-
+    <p>Digite os jogadores da categoria</p>
+    <textarea id="nomesAtletas" style="width: 200px;height: 200px"></textarea>
     <div>
     Dividir os jogadores em quantos grupos?
         <select v-model="selected">
@@ -15,29 +12,29 @@
         <option>4</option>
         <option>5</option>
         </select>
-    </div>
-    <div>
     <button id="btnDistribua" @click="sorteio()">Sortear Grupos</button>
     </div>
+    <div class="flex-cont">
 	<div v-show=mostraA>
     <p>Grupo A</p>
-    <textarea id="A" style="width: 50%;height: 100px" ></textarea><br>
+    <textarea id="A"></textarea><br>
     </div>
 	<div v-show=mostraB>
     <p>Grupo B</p>
-    <textarea id="B" style="width: 50%;height: 100px" ></textarea><br>
+    <textarea id="B"></textarea><br>
     </div>
     <div v-show=mostraC>
     <p>Grupo C</p>
-    <textarea id="C" style="width: 50%;height: 100px" ></textarea><br>
+    <textarea id="C"></textarea><br>
     </div>
     <div v-show=mostraD>
     <p>Grupo D</p>
-    <textarea id="D" style="width: 50%;height: 100px" ></textarea><br>
+    <textarea id="D"></textarea><br>
     </div>
     <div v-show=mostraE>
     <p>Grupo E</p>
-    <textarea id="E" style="width: 50%;height: 100px" ></textarea><br>
+    <textarea id="E"></textarea><br>
+    </div>
     </div>
 </div>
 </template>

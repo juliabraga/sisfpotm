@@ -10,14 +10,20 @@
 		<option>D</option>
 		<option>Todos</option>
 		</select>
+<button id="btnDistribua" @click="distribua()">Distribua jogos</button>
 	</div>
-    <button id="btnDistribua" @click="distribua()">Distribua jogos</button>
+    
 	</div>
 	<div>
 		<br>
 		Copie e cole na sua planilha:<br>
-		<textarea id="resultado" style="width: 50%;height: 200px"></textarea>
+		<textarea id="resultado" style="width: 70%;height: 200px"></textarea>
     </div>
+	<div>
+    <button id="download" style="background: #A9A9A9">
+      Download Excel
+    </button>    
+  </div>
 </template>
 
 <script>
