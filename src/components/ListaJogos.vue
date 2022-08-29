@@ -8,6 +8,10 @@
 		<option>B</option>
 		<option>C</option>
 		<option>D</option>
+		<option>E</option>
+		<option>F</option>
+		<option>G</option>
+		<option>H</option>
 		<option>Todos</option>
 		</select>
 <button id="btnDistribua" @click="distribua()">Distribua jogos</button>
@@ -75,7 +79,6 @@ export default {
 				result += grupoDiv + grupo[4] + separador + grupo[3];
 			}
 			resultado.value += result;
-			
 		},
 
     distribua() {

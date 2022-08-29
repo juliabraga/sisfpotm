@@ -27,11 +27,32 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 5px;
 }
-textarea {
+#cbtmlogo {
+  height: 61px;
+  width: 168px; 
+}
+
+#fpotmlogo{
+  height: 83.5px;
+  width: 253.7px; 
+}
+img {
+  opacity: 0.5;
+}
+
+img:hover {
+  opacity: 1.0;
+}
+
+  textarea {
    height: 100px;
+   background-color:khaki;
+   border-radius: 10px;
+   border: 2px solid #00984b;
   }
+  
   body {
     text-align:center;
   }
@@ -44,16 +65,15 @@ textarea {
   .flex-cont {
     display: flex;
     margin: 5px;
+    flex-wrap: wrap;
     justify-content: center;
+    align-content: space-between;
   }
-  
     .flex-cont > div  {
     display: flex;
-    flex-wrap: wrap;
     margin: 10px;
     flex-direction: column;
-    align-content: space-between;
-    align-items: center;	
+    align-items: center;
   }
   
     .flex-cont > div > div {

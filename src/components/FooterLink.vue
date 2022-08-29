@@ -1,9 +1,8 @@
 <template>
   <div class="links">
-    <h3>Links</h3>
     <ul>
-      <li><a href="https://fpotm.net" target="_blank" rel="noopener">FPoTM.Net</a></li>
-      <li><a href="https://cbtm.org.br" target="_blank" rel="noopener">CBTM</a></li>
+    <li><a href="https://fpotm.net" target="_blank"> <img id="fpotmlogo" src="../assets/FPOTM_H.png" alt="FPoTM.net"> </a></li>
+    <li><a href="https://cbtm.org.br" target="_blank" > <img id="cbtmlogo" src="../assets/cbtm_Logo.png" alt="cbtm"></a></li>
     </ul>
   </div>
 </template>
@@ -11,9 +10,6 @@
 <script>
 export default {
   name: 'FooterLink',
-  props: {
-    msg: String
-  }
 }
 </script>
 
