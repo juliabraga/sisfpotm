@@ -12,7 +12,6 @@
 		<option>F</option>
 		<option>G</option>
 		<option>H</option>
-		<option>Todos</option>
 		</select>
 <button id="btnDistribua" @click="distribua()">Distribua jogos</button>
 	</div>
@@ -86,9 +85,6 @@ export default {
         let jogadoresNogrupo = document.getElementById(this.grupoDividir);
 		if (this.grupoDividir != "Todos"){
           let linhas = jogadoresNogrupo.value.split("\n");
-          
-          //let linhas2 = linhas.pop();
-          //console.log(linhas2);
           let grupo = linhas.reduce(function(target, key, index) {target[index] = key; 
           return target;}, {});
           this.distribuirGrupo(grupo);

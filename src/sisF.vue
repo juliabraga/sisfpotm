@@ -1,20 +1,20 @@
 <template>
-  <FooterLink />
+  <LinksUteis />
   <SortearGrupos />
-  <ListaJogos />
+  
 </template>
 
 <script>
-import FooterLink from './components/FooterLink.vue'
-import ListaJogos from './components/ListaJogos.vue'
+import LinksUteis from './components/LinksUteis.vue'
+// import ListaJogos from './components/ListaJogos.vue'
 import SortearGrupos from './components/SortearGrupos.vue'
 
 
 export default {
   name: 'sisF',
   components: {
-    FooterLink,
-    ListaJogos,
+    LinksUteis,
+    // ListaJogos,
     SortearGrupos,
   }
 }

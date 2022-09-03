@@ -1,5 +1,14 @@
 <template>
 <div>
+  <div>
+        <button id="btnCabecas" @click="ativar()">Tem cabeças de chave? Clique AQUI</button>
+    <div>
+        <span v-if="ativo">
+            Escreva os cabeça de chave aqui<br>
+            <textarea id="cabecas" style="height: 100px"></textarea><br>
+        </span>
+    </div>
+    </div>
     <p>Digite os jogadores da categoria</p>
     <textarea id="nomesAtletas" style="width: 200px;height: 200px"></textarea>
     <div>
@@ -15,9 +24,14 @@
         <option>7</option>
         <option>8</option>
         </select>
-    <button id="btnDistribua" @click="sorteio()">Sortear Grupos</button>
+    <span v-if="!ativo">
+    <button  id="btnSemCabeca" @click="sorteio()">Sortear Grupos</button>
+    </span>
+    <span v-if="ativo">
+    <button  id="btnComCabeca" @click="sorteioCabeca()">Sortear Grupos Com cabeças de chave</button>
+    </span>
     </div>
-    <div class="flex-cont">
+    <div v-show=mostraGrupos class="flex-cont">
       <div v-show=mostraA>
       <p>Grupo A</p>
       <textarea id="A"></textarea><br>
@@ -52,23 +66,34 @@
       </div>
     </div>
 </div>
+<span v-if="jogos">
+<ListaJogos />
+</span>
+
 </template>
 
+
 <script>
-//import GruposDivididos from './GruposDivididos.vue'
+// import CabecaDeChave from './CabecaDeChave.vue'
+import ListaJogos from './ListaJogos.vue'
 
 export default ({
+// mixins: [CabecaDeChave],
 components: {
-    //GruposDivididos,
+  // CabecaDeChave,
+  ListaJogos,
 },
 name: 'SortearGrupos',
 
 data() {
     return {
+    jogos: false,
+    ativo: false,
     selected: '',
     grupos: '',
     qntGrupos: '',
-	grupoDividir: '',
+    grupoDividir: '',
+    mostraGrupos: false,
     mostraA: false,
     mostraB: false,
     mostraC: false,
@@ -80,7 +105,12 @@ data() {
 }
 },
 methods: {
-    sorteio(){
+    ativar(){this.ativo = !this.ativo;
+    this.mostraGrupos = false;
+    this.jogos = false;
+    },
+    sorteioCabeca(){
+    this.jogos = true;
     let grupoA = document.getElementById("A");
     let grupoB = document.getElementById("B");
     let grupoC = document.getElementById("C");
@@ -100,61 +130,56 @@ methods: {
 
     let nomesJogadores = document.getElementById("nomesAtletas");
     let linhas = nomesJogadores.value.split("\n");
+    let inc = this.selected;
     let qtdJogadores = linhas.length;
     console.log(qtdJogadores);
+
+    let nomesCabecas = document.getElementById("cabecas");
+    let arrayCabecas = nomesCabecas.value.split("\n");
     
     
       for (let i = 0; i < linhas.length; i++) {
       const j = Math.floor(Math.random() * (i + 1));
       [linhas[i], linhas[j]] = [linhas[j], linhas[i]];
       }
-    let sobra = qtdJogadores%this.selected;
+      linhas = arrayCabecas.concat(linhas)
+      console.log(linhas)
+      qtdJogadores = linhas.length;
+      console.log(qtdJogadores);
       
-      if (this.selected == 1){
-        for (let i=0; i<(qtdJogadores-sobra); i+=1){
-          this.mostraA = true;
-          this.mostraB = false;
-          this.mostraC = false;
-          this.mostraD = false;
-          this.mostraE = false;
-          this.mostraF = false;
-          this.mostraG = false;
-          this.mostraH = false;
+    
+    let sobra = qtdJogadores%inc;
+      
+      if (inc == 1){
+        for (let i=0; i<(qtdJogadores-sobra); i++){
+          this.mostraGrupos = true;
+          this.mostraA = true; this.mostraB = false; this.mostraC = false; this.mostraD = false;
+          this.mostraE = false; this.mostraF = false; this.mostraG = false; this.mostraH = false;
           grupoA.value += linhas[i] + "\n";
         }
       }
       
-      if (this.selected == 2){
+      if (inc == 2){
         for (let i=0; i<(qtdJogadores-sobra); i+=2){
-            this.mostraA = true;
-            this.mostraB = true;
-            this.mostraC = false;
-            this.mostraD = false;
-            this.mostraE = false;
-            this.mostraF = false;
-            this.mostraG = false;
-            this.mostraH = false;
-            grupoB.value += linhas[i] + "\n";
-            grupoA.value += linhas[i+1] + "\n";
+            this.mostraGrupos = true;
+            this.mostraA = true; this.mostraB = true; this.mostraC = false; this.mostraD = false; 
+            this.mostraE = false; this.mostraF = false; this.mostraG = false; this.mostraH = false;
+            grupoA.value += linhas[i] + "\n";
+            grupoB.value += linhas[i+1] + "\n";
         }
         if (sobra == 1){
           grupoB.value += linhas[qtdJogadores-1] + "\n";
         }
       }
       
-      if (this.selected == 3){
+      if (inc == 3){
         for (let i=0; i<(qtdJogadores-sobra); i+=3){
-          this.mostraA = true;
-          this.mostraB = true;
-          this.mostraC = true;
-          this.mostraD = false;
-          this.mostraE = false;
-          this.mostraF = false;
-          this.mostraG = false;
-          this.mostraH = false;
-          grupoC.value += linhas[i] + "\n";
+          this.mostraGrupos = true;
+          this.mostraA = true; this.mostraB = true; this.mostraC = true; this.mostraD = false;
+          this.mostraE = false; this.mostraF = false; this.mostraG = false; this.mostraH = false;
+          grupoA.value += linhas[i] + "\n";
           grupoB.value += linhas[i+1] + "\n";
-          grupoA.value += linhas[i+2] + "\n";
+          grupoC.value += linhas[i+2] + "\n";
         } 
         if (sobra == 1){
           grupoC.value += linhas[qtdJogadores-1] + "\n";
@@ -165,20 +190,15 @@ methods: {
         }
       }
     
-      if (this.selected == 4){
+      if (inc == 4){
         for (let i=0; i<(qtdJogadores - sobra); i+=4){
-          this.mostraA = true;
-          this.mostraB = true;
-          this.mostraC = true;
-          this.mostraD = true;
-          this.mostraE = false;
-          this.mostraF = false;
-          this.mostraG = false;
-          this.mostraH = false;
-          grupoD.value += linhas[i] + "\n";
-          grupoC.value += linhas[i+1] + "\n";
-          grupoB.value += linhas[i+2] + "\n";
-          grupoA.value += linhas[i+3] + "\n";
+          this.mostraGrupos = true;
+          this.mostraA = true; this.mostraB = true; this.mostraC = true; this.mostraD = true;
+          this.mostraE = false; this.mostraF = false; this.mostraG = false; this.mostraH = false;
+          grupoA.value += linhas[i] + "\n";
+          grupoB.value += linhas[i+1] + "\n";
+          grupoC.value += linhas[i+2] + "\n";
+          grupoD.value += linhas[i+3] + "\n";
         }
         if (sobra == 1){
           grupoD.value += linhas[qtdJogadores-1] + "\n";
@@ -193,21 +213,16 @@ methods: {
           grupoD.value += linhas[qtdJogadores-1] + "\n";
         }
      }
-     if (this.selected == 5){
+     if (inc == 5){
         for (let i=0; i<(qtdJogadores - sobra); i+=5){
-          this.mostraA = true;
-          this.mostraB = true;
-          this.mostraC = true;
-          this.mostraD = true;
-          this.mostraE = true;
-          this.mostraF = false;
-          this.mostraG = false;
-          this.mostraH = false;
-          grupoE.value += linhas[i] + "\n";
-          grupoD.value += linhas[i+1] + "\n";
+          this.mostraGrupos = true;
+          this.mostraA = true; this.mostraB = true; this.mostraC = true; this.mostraD = true;
+          this.mostraE = true; this.mostraF = false; this.mostraG = false; this.mostraH = false;
+          grupoA.value += linhas[i] + "\n";
+          grupoB.value += linhas[i+1] + "\n";
           grupoC.value += linhas[i+2] + "\n";
-          grupoB.value += linhas[i+3] + "\n";
-          grupoA.value += linhas[i+4] + "\n";
+          grupoD.value += linhas[i+3] + "\n";
+          grupoE.value += linhas[i+4] + "\n";
         }
         if (sobra == 1){
           grupoE.value += linhas[qtdJogadores-1] + "\n";
@@ -228,22 +243,17 @@ methods: {
           grupoE.value += linhas[qtdJogadores-1] + "\n";
         }
      }
-     if (this.selected == 6){
+     if (inc == 6){
         for (let i=0; i<(qtdJogadores - sobra); i+=6){
-          this.mostraA = true;
-          this.mostraB = true;
-          this.mostraC = true;
-          this.mostraD = true;
-          this.mostraE = true;
-          this.mostraF = true;
-          this.mostraG = false;
-          this.mostraH = false;
-          grupoF.value += linhas[i] + "\n";
-          grupoE.value += linhas[i+1] + "\n";
-          grupoD.value += linhas[i+2] + "\n";
-          grupoC.value += linhas[i+3] + "\n";
-          grupoB.value += linhas[i+4] + "\n";
-          grupoA.value += linhas[i+5] + "\n";
+          this.mostraGrupos = true;
+          this.mostraA = true; this.mostraB = true; this.mostraC = true; this.mostraD = true;
+          this.mostraE = true; this.mostraF = true; this.mostraG = false; this.mostraH = false;
+          grupoA.value += linhas[i] + "\n";
+          grupoB.value += linhas[i+1] + "\n";
+          grupoC.value += linhas[i+2] + "\n";
+          grupoD.value += linhas[i+3] + "\n";
+          grupoE.value += linhas[i+4] + "\n";
+          grupoF.value += linhas[i+5] + "\n";
         }
         if (sobra == 1){
           grupoF.value += linhas[qtdJogadores-1] + "\n";
@@ -271,23 +281,18 @@ methods: {
           grupoF.value += linhas[qtdJogadores-1] + "\n";
         }
      }
-     if (this.selected == 7){
+     if (inc == 7){
         for (let i=0; i<(qtdJogadores - sobra); i+=7){
-          this.mostraA = true;
-          this.mostraB = true;
-          this.mostraC = true;
-          this.mostraD = true;
-          this.mostraE = true;
-          this.mostraF = true;
-          this.mostraG = true;
-          this.mostraH = false;
-          grupoG.value += linhas[i] + "\n";
-          grupoF.value += linhas[i+1] + "\n";
-          grupoE.value += linhas[i+2] + "\n";
+          this.mostraGrupos = true;
+          this.mostraA = true; this.mostraB = true; this.mostraC = true; this.mostraD = true;
+          this.mostraE = true; this.mostraF = true; this.mostraG = true; this.mostraH = false;
+          grupoA.value += linhas[i] + "\n";
+          grupoB.value += linhas[i+1] + "\n";
+          grupoC.value += linhas[i+2] + "\n";
           grupoD.value += linhas[i+3] + "\n";
-          grupoC.value += linhas[i+4] + "\n";
-          grupoB.value += linhas[i+5] + "\n";
-          grupoA.value += linhas[i+6] + "\n";
+          grupoE.value += linhas[i+4] + "\n";
+          grupoF.value += linhas[i+5] + "\n";
+          grupoG.value += linhas[i+6] + "\n";
         }
         if (sobra == 1){
           grupoG.value += linhas[qtdJogadores-1] + "\n";
@@ -323,24 +328,19 @@ methods: {
           grupoG.value += linhas[qtdJogadores-1] + "\n";
         }
      }
-          if (this.selected == 8){
+    if (inc == 8){
         for (let i=0; i<(qtdJogadores - sobra); i+=8){
-          this.mostraA = true;
-          this.mostraB = true;
-          this.mostraC = true;
-          this.mostraD = true;
-          this.mostraE = true;
-          this.mostraF = true;
-          this.mostraG = true;
-          this.mostraH = true;
-          grupoH.value += linhas[i] + "\n";
-          grupoG.value += linhas[i+1] + "\n";
-          grupoF.value += linhas[i+2] + "\n";
-          grupoE.value += linhas[i+3] + "\n";
-          grupoD.value += linhas[i+4] + "\n";
-          grupoC.value += linhas[i+5] + "\n";
-          grupoB.value += linhas[i+6] + "\n";
-          grupoA.value += linhas[i+7] + "\n";
+          this.mostraGrupos = true;
+          this.mostraA = true; this.mostraB = true; this.mostraC = true; this.mostraD = true;
+          this.mostraE = true; this.mostraF = true; this.mostraG = true; this.mostraH = true;
+          grupoA.value += linhas[i] + "\n";
+          grupoB.value += linhas[i+1] + "\n";
+          grupoC.value += linhas[i+2] + "\n";
+          grupoD.value += linhas[i+3] + "\n";
+          grupoE.value += linhas[i+4] + "\n";
+          grupoF.value += linhas[i+5] + "\n";
+          grupoG.value += linhas[i+6] + "\n";
+          grupoH.value += linhas[i+7] + "\n";
         }
         if (sobra == 1){
           grupoH.value += linhas[qtdJogadores-1] + "\n";
@@ -385,7 +385,278 @@ methods: {
           grupoH.value += linhas[qtdJogadores-1] + "\n";
         }
      }
+    },
+    sorteio(){
+    this.jogos = true;
+    let grupoA = document.getElementById("A");
+    let grupoB = document.getElementById("B");
+    let grupoC = document.getElementById("C");
+    let grupoD = document.getElementById("D");
+    let grupoE = document.getElementById("E");
+    let grupoF = document.getElementById("F");
+    let grupoG = document.getElementById("G");
+    let grupoH = document.getElementById("H");
+    grupoA.value = "";
+    grupoB.value = "";
+    grupoC.value = "";
+    grupoD.value = "";
+    grupoE.value = "";
+    grupoF.value = "";
+    grupoG.value = "";
+    grupoH.value = "";
+
+    let nomesJogadores = document.getElementById("nomesAtletas");
+    let linhas = nomesJogadores.value.split("\n");
+    let inc = this.selected;
+    let qtdJogadores = linhas.length;
+    console.log(qtdJogadores);
+    
+      for (let i = 0; i < linhas.length; i++) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [linhas[i], linhas[j]] = [linhas[j], linhas[i]];
+      }
+      
+    
+    let sobra = qtdJogadores%inc;
+      
+      if (inc == 1){
+        for (let i=0; i<(qtdJogadores-sobra); i++){
+          this.mostraGrupos = true;
+          this.mostraA = true; this.mostraB = false; this.mostraC = false; this.mostraD = false;
+          this.mostraE = false; this.mostraF = false; this.mostraG = false; this.mostraH = false;
+          grupoA.value += linhas[i] + "\n";
+        }
+      }
+      
+      if (inc == 2){
+        for (let i=0; i<(qtdJogadores-sobra); i+=2){
+            this.mostraGrupos = true;
+            this.mostraA = true; this.mostraB = true; this.mostraC = false; this.mostraD = false; 
+            this.mostraE = false; this.mostraF = false; this.mostraG = false; this.mostraH = false;
+            grupoA.value += linhas[i] + "\n";
+            grupoB.value += linhas[i+1] + "\n";
+        }
+        if (sobra == 1){
+          grupoB.value += linhas[qtdJogadores-1] + "\n";
+        }
+      }
+      
+      if (inc == 3){
+        for (let i=0; i<(qtdJogadores-sobra); i+=3){
+          this.mostraGrupos = true;
+          this.mostraA = true; this.mostraB = true; this.mostraC = true; this.mostraD = false;
+          this.mostraE = false; this.mostraF = false; this.mostraG = false; this.mostraH = false;
+          grupoA.value += linhas[i] + "\n";
+          grupoB.value += linhas[i+1] + "\n";
+          grupoC.value += linhas[i+2] + "\n";
+        } 
+        if (sobra == 1){
+          grupoC.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 2){
+          grupoB.value += linhas[qtdJogadores-2] + "\n";
+          grupoC.value += linhas[qtdJogadores-1] + "\n";
+        }
+      }
+    
+      if (inc == 4){
+        for (let i=0; i<(qtdJogadores - sobra); i+=4){
+          this.mostraGrupos = true;
+          this.mostraA = true; this.mostraB = true; this.mostraC = true; this.mostraD = true;
+          this.mostraE = false; this.mostraF = false; this.mostraG = false; this.mostraH = false;
+          grupoA.value += linhas[i] + "\n";
+          grupoB.value += linhas[i+1] + "\n";
+          grupoC.value += linhas[i+2] + "\n";
+          grupoD.value += linhas[i+3] + "\n";
+        }
+        if (sobra == 1){
+          grupoD.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 2){
+          grupoC.value += linhas[qtdJogadores-2] + "\n";
+          grupoD.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 3){
+          grupoB.value += linhas[qtdJogadores-3] + "\n";
+          grupoC.value += linhas[qtdJogadores-2] + "\n";
+          grupoD.value += linhas[qtdJogadores-1] + "\n";
+        }
+     }
+     if (inc == 5){
+        for (let i=0; i<(qtdJogadores - sobra); i+=5){
+          this.mostraGrupos = true;
+          this.mostraA = true; this.mostraB = true; this.mostraC = true; this.mostraD = true;
+          this.mostraE = true; this.mostraF = false; this.mostraG = false; this.mostraH = false;
+          grupoA.value += linhas[i] + "\n";
+          grupoB.value += linhas[i+1] + "\n";
+          grupoC.value += linhas[i+2] + "\n";
+          grupoD.value += linhas[i+3] + "\n";
+          grupoE.value += linhas[i+4] + "\n";
+        }
+        if (sobra == 1){
+          grupoE.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 2){
+          grupoD.value += linhas[qtdJogadores-2] + "\n";
+          grupoE.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 3){
+          grupoC.value += linhas[qtdJogadores-3] + "\n";
+          grupoD.value += linhas[qtdJogadores-2] + "\n";
+          grupoE.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 4){
+          grupoB.value += linhas[qtdJogadores-4] + "\n";
+          grupoC.value += linhas[qtdJogadores-3] + "\n";
+          grupoD.value += linhas[qtdJogadores-2] + "\n";
+          grupoE.value += linhas[qtdJogadores-1] + "\n";
+        }
+     }
+     if (inc == 6){
+        for (let i=0; i<(qtdJogadores - sobra); i+=6){
+          this.mostraGrupos = true;
+          this.mostraA = true; this.mostraB = true; this.mostraC = true; this.mostraD = true;
+          this.mostraE = true; this.mostraF = true; this.mostraG = false; this.mostraH = false;
+          grupoA.value += linhas[i] + "\n";
+          grupoB.value += linhas[i+1] + "\n";
+          grupoC.value += linhas[i+2] + "\n";
+          grupoD.value += linhas[i+3] + "\n";
+          grupoE.value += linhas[i+4] + "\n";
+          grupoF.value += linhas[i+5] + "\n";
+        }
+        if (sobra == 1){
+          grupoF.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 2){
+          grupoE.value += linhas[qtdJogadores-2] + "\n";
+          grupoF.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 3){
+          grupoD.value += linhas[qtdJogadores-3] + "\n";
+          grupoE.value += linhas[qtdJogadores-2] + "\n";
+          grupoF.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 4){
+          grupoC.value += linhas[qtdJogadores-4] + "\n";
+          grupoD.value += linhas[qtdJogadores-3] + "\n";
+          grupoE.value += linhas[qtdJogadores-2] + "\n";
+          grupoF.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 5){
+          grupoB.value += linhas[qtdJogadores-5] + "\n";
+          grupoC.value += linhas[qtdJogadores-4] + "\n";
+          grupoD.value += linhas[qtdJogadores-3] + "\n";
+          grupoE.value += linhas[qtdJogadores-2] + "\n";
+          grupoF.value += linhas[qtdJogadores-1] + "\n";
+        }
+     }
+     if (inc == 7){
+        for (let i=0; i<(qtdJogadores - sobra); i+=7){
+          this.mostraGrupos = true;
+          this.mostraA = true; this.mostraB = true; this.mostraC = true; this.mostraD = true;
+          this.mostraE = true; this.mostraF = true; this.mostraG = true; this.mostraH = false;
+          grupoA.value += linhas[i] + "\n";
+          grupoB.value += linhas[i+1] + "\n";
+          grupoC.value += linhas[i+2] + "\n";
+          grupoD.value += linhas[i+3] + "\n";
+          grupoE.value += linhas[i+4] + "\n";
+          grupoF.value += linhas[i+5] + "\n";
+          grupoG.value += linhas[i+6] + "\n";
+        }
+        if (sobra == 1){
+          grupoG.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 2){
+          grupoF.value += linhas[qtdJogadores-2] + "\n";
+          grupoG.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 3){
+          grupoE.value += linhas[qtdJogadores-3] + "\n";
+          grupoF.value += linhas[qtdJogadores-2] + "\n";
+          grupoG.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 4){
+          grupoD.value += linhas[qtdJogadores-4] + "\n";
+          grupoE.value += linhas[qtdJogadores-3] + "\n";
+          grupoF.value += linhas[qtdJogadores-2] + "\n";
+          grupoG.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 5){
+          grupoC.value += linhas[qtdJogadores-5] + "\n";
+          grupoD.value += linhas[qtdJogadores-4] + "\n";
+          grupoE.value += linhas[qtdJogadores-3] + "\n";
+          grupoF.value += linhas[qtdJogadores-2] + "\n";
+          grupoG.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 6){
+          grupoB.value += linhas[qtdJogadores-6] + "\n";
+          grupoC.value += linhas[qtdJogadores-5] + "\n";
+          grupoD.value += linhas[qtdJogadores-4] + "\n";
+          grupoE.value += linhas[qtdJogadores-3] + "\n";
+          grupoF.value += linhas[qtdJogadores-2] + "\n";
+          grupoG.value += linhas[qtdJogadores-1] + "\n";
+        }
+     }
+    if (inc == 8){
+        for (let i=0; i<(qtdJogadores - sobra); i+=8){
+          this.mostraGrupos = true;
+          this.mostraA = true; this.mostraB = true; this.mostraC = true; this.mostraD = true;
+          this.mostraE = true; this.mostraF = true; this.mostraG = true; this.mostraH = true;
+          grupoA.value += linhas[i] + "\n";
+          grupoB.value += linhas[i+1] + "\n";
+          grupoC.value += linhas[i+2] + "\n";
+          grupoD.value += linhas[i+3] + "\n";
+          grupoE.value += linhas[i+4] + "\n";
+          grupoF.value += linhas[i+5] + "\n";
+          grupoG.value += linhas[i+6] + "\n";
+          grupoH.value += linhas[i+7] + "\n";
+        }
+        if (sobra == 1){
+          grupoH.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 2){
+          grupoG.value += linhas[qtdJogadores-2] + "\n";
+          grupoH.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 3){
+          grupoF.value += linhas[qtdJogadores-3] + "\n";
+          grupoG.value += linhas[qtdJogadores-2] + "\n";
+          grupoH.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 4){
+          grupoE.value += linhas[qtdJogadores-4] + "\n";
+          grupoF.value += linhas[qtdJogadores-3] + "\n";
+          grupoG.value += linhas[qtdJogadores-2] + "\n";
+          grupoH.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 5){
+          grupoD.value += linhas[qtdJogadores-5] + "\n";
+          grupoE.value += linhas[qtdJogadores-4] + "\n";
+          grupoF.value += linhas[qtdJogadores-3] + "\n";
+          grupoG.value += linhas[qtdJogadores-2] + "\n";
+          grupoH.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 6){
+          grupoC.value += linhas[qtdJogadores-6] + "\n";
+          grupoD.value += linhas[qtdJogadores-5] + "\n";
+          grupoE.value += linhas[qtdJogadores-4] + "\n";
+          grupoF.value += linhas[qtdJogadores-3] + "\n";
+          grupoG.value += linhas[qtdJogadores-2] + "\n";
+          grupoH.value += linhas[qtdJogadores-1] + "\n";
+        }
+        if (sobra == 7){
+          grupoB.value += linhas[qtdJogadores-7] + "\n";
+          grupoC.value += linhas[qtdJogadores-6] + "\n";
+          grupoD.value += linhas[qtdJogadores-5] + "\n";
+          grupoE.value += linhas[qtdJogadores-4] + "\n";
+          grupoF.value += linhas[qtdJogadores-3] + "\n";
+          grupoG.value += linhas[qtdJogadores-2] + "\n";
+          grupoH.value += linhas[qtdJogadores-1] + "\n";
+        }
+     }
+
     }
+
 }
 })
 </script>
