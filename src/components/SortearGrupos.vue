@@ -1,5 +1,12 @@
 <template>
 <div>
+  <button id="btnresultados" @click="clickresultados()">Lançar resultados</button>
+  <button id="btnsorteador" @click="clicksorteador()">Sortear grupos</button>
+</div>
+<div v-if="resultados">
+<LancaResultados />
+</div>
+<div v-if="sorteador">
   <div>
         <button id="btnCabecas" @click="ativar()">Tem cabeças de chave? Clique AQUI</button>
     <div>
@@ -74,14 +81,13 @@
 
 
 <script>
-// import CabecaDeChave from './CabecaDeChave.vue'
 import ListaJogos from './ListaJogos.vue'
+import LancaResultados from './LancaResultados.vue'
 
 export default ({
-// mixins: [CabecaDeChave],
 components: {
-  // CabecaDeChave,
   ListaJogos,
+  LancaResultados,
 },
 name: 'SortearGrupos',
 
@@ -89,6 +95,8 @@ data() {
     return {
     Jogadores: '',
     CabecasDeChave: '',
+    resultados: false,  
+    sorteador: false,
     jogos: false,
     ativo: false,
     selected: '',
@@ -107,6 +115,14 @@ data() {
 }
 },
 methods: {
+    clicksorteador(){
+    this.sorteador = !this.sorteador;
+    this.resultados = false},
+    
+    clickresultados(){
+    this.resultados = !this.resultados;
+    this.sorteador = false},
+
     ativar(){this.ativo = !this.ativo;
     this.mostraGrupos = false;
     this.jogos = false;

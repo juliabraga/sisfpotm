@@ -1,7 +1,6 @@
 <template>
   <LinksUteis />
-  <SortearGrupos />
-  
+  <SortearGrupos />  
 </template>
 
 <script>
@@ -61,7 +60,17 @@ img:hover {
     color: white;
     background: #6495ED;
   }
-  
+  #btnresultados, #btnsorteador{
+    margin: 10px;
+    color: black;
+    background: white;
+  }
+  .btnativo{
+    margin: 10px;
+    color: white;
+    background: black;
+  }
+    
   .flex-cont {
     display: flex;
     margin: 5px;
