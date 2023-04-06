@@ -1,8 +1,8 @@
 <template>
   <div class="links">
     <ul>
-    <li><a href="https://fpotm.net" target="_blank"> <img id="fpotmlogo" src="../assets/FPOTM_H.png" alt="FPoTM.net"> </a></li>
-    <li><a href="https://cbtm.org.br" target="_blank" > <img id="cbtmlogo" src="../assets/cbtm_Logo.png" alt="cbtm"></a></li>
+    <li><a href="https://fpotm.net" target="_blank"> <img id="fpotmlogo" src="../assets/img/FPOTM_H.png" alt="FPoTM.net"> </a></li>
+    <li><a href="https://cbtm.org.br" target="_blank" > <img id="cbtmlogo" src="../assets/img/cbtm_Logo.png" alt="cbtm"></a></li>
     </ul>
   </div>
 </template>
