@@ -1,0 +1,21 @@
+{
+  "name": "itunes-xml-to-json",
+  "version": "1.0.0",
+  "description": "Passa as informaçoes de um xml importado do itunes para um arquivo JSON.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "json",
+    "xml",
+    "itunes"
+  ],
+  "author": "Lucas Brilhante<lucasbrilhantepires@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.29.1",
+    "xml2json": "^0.12.0"
+  }
+}
