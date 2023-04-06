@@ -20,5 +20,5 @@ jobs:
       with:
         node-version: v18.13.0
         cache: 'npm'
-    - run: npm start
-    - working-directory: ./itunes-xml-to-jason
+      run: npm start
+        working-directory: ./itunes-xml-to-jason
