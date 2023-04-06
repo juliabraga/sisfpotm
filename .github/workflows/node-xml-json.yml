@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      working-directory: ./itunes-xml-to-jason
+      working-directory: ./itunes-xml-to-json
 
     strategy:
       matrix:
