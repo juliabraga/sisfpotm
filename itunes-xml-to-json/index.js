@@ -5,7 +5,7 @@ const moment = require("moment");
 moment.locale("pt-br");
 
 let fileInputName = "tabela.xml";
-let fileOutputName = "tabela.json";
+let fileOutputName = "./itunes-xml-to-json/tabela.json";
 
 function getAlbum(track) {
   let index = 2;
