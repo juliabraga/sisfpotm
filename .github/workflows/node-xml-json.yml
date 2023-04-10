@@ -35,11 +35,7 @@ jobs:
       run: npm start
     
     - name: commit JSON files
-      run: |-
-      git config --global user.email "juliabraga@gmail.com" 
-      git config --global user.name "juliabraga"
-      git add -A && git commit -m "JSON created!"
-      git push
+      run: git config --global user.email "juliabraga@gmail.com" && git config --global user.name "juliabraga" && git add -A && git commit -m "JSON created!" && git push
   
   deploy:
     runs-on: ubuntu-latest
