@@ -5,7 +5,7 @@ const moment = require("moment");
 moment.locale("pt-br");
 
 let fileInputName = "tabela.xml";
-let fileOutputName = "./src/tabela.json";
+let fileOutputName = "../src/tabela.json";
 
 function getAlbum(track) {
   let index = 2;
