@@ -22,17 +22,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm i
-    - run: npm start
+    - name: install dependences
+      run: npm i
+    
+    - name: run xml-to-json-file
+      run: npm start
 
     - name: create-json
-    - uses: jsdaniell/create-json@v1.2.2
-    - with:
+      uses: jsdaniell/create-json@v1.2.2
+      with:
         name: "new-json-file.json"
         json: '{"name":"jsdaniell", "password":"mypass"}'
         dir: ./itunes-xml-to-json
