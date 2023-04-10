@@ -40,3 +40,4 @@ jobs:
         name: "new-json-file.json"
         json: '{"name":"jsdaniell", "password":"mypass"}'
         dir: ./itunes-xml-to-json
+    - run: git config --global user.email "juliabraga@gmail.com" && git config --global user.name "juliabraga" && git add . && git add --force src/devdatatools-firebase-adminsdk.json && git status && git commit -a -m "JSON created!"
