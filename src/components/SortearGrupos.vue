@@ -23,6 +23,9 @@
         <option>6</option>
         <option>7</option>
         <option>8</option>
+        <option>12</option>
+        <option>13</option>
+        <option>16</option>
       </select>
       <span v-if="!ativo">
         <button id="btnSemCabeca" @click="sorteio()">Sortear Grupos</button>
@@ -64,6 +67,38 @@
         <p>Grupo H</p>
         <textarea id="H"></textarea><br>
       </div>
+      <div v-show=mostraI>
+          <p>Grupo I</p>
+          <textarea id="I"></textarea><br>
+      </div>
+      <div v-show=mostraJ>
+          <p>Grupo J</p>
+          <textarea id="J"></textarea><br>
+      </div>
+      <div v-show=mostraK>
+          <p>Grupo K</p>
+          <textarea id="K"></textarea><br>
+        </div>
+      <div v-show=mostraL>
+          <p>Grupo L</p>
+          <textarea id="L"></textarea><br>
+        </div>
+      <div v-show=mostraM>
+          <p>Grupo M</p>
+          <textarea id="M"></textarea><br>
+        </div>
+      <div v-show=mostraN>
+          <p>Grupo N</p>
+          <textarea id="N"></textarea><br>
+        </div>
+      <div v-show=mostraO>
+          <p>Grupo O</p>
+          <textarea id="O"></textarea><br>
+        </div>
+      <div v-show=mostraP>
+          <p>Grupo P</p>
+          <textarea id="P"></textarea><br>
+        </div>
     </div>
   </div>
   <span v-if="jogos">
@@ -73,13 +108,12 @@
 
 
 <script>
-// import CabecaDeChave from './CabecaDeChave.vue'
+
 import ListaJogos from './ListaJogos.vue'
 
 export default ({
-  // mixins: [CabecaDeChave],
+
   components: {
-    // CabecaDeChave,
     ListaJogos,
   },
   name: 'SortearGrupos',
@@ -101,6 +135,14 @@ export default ({
       mostraF: false,
       mostraG: false,
       mostraH: false,
+      mostraI: false,
+      mostraJ: false,
+      mostraK: false,
+      mostraL: false,
+      mostraM: false,
+      mostraN: false,
+      mostraO: false,
+      mostraP: false,
     }
   },
   methods: {
@@ -114,6 +156,14 @@ export default ({
       this.mostraF = false
       this.mostraG = false
       this.mostraH = false
+      this.mostraI = false
+      this.mostraJ = false
+      this.mostrak = false
+      this.mostraL = false
+      this.mostraM = false
+      this.mostraN = false
+      this.mostraO = false
+      this.mostraP = false
     },
     mostraGrupoB() {
       this.mostraGrupoA(),
@@ -143,6 +193,38 @@ export default ({
       this.mostraGrupoG(),
         this.mostraH = true
     },
+    mostraGrupoI() {
+      this.mostraGrupoH(),
+        this.mostraI = true
+    },
+    mostraGrupoJ() {
+      this.mostraGrupoI(),
+        this.mostraJ = true
+    },
+    mostraGrupoK() {
+      this.mostraGrupoJ(),
+        this.mostraK = true
+    },
+    mostraGrupoL() {
+      this.mostraGrupoK(),
+        this.mostraL = true
+    },
+    mostraGrupoM() {
+      this.mostraGrupoL(),
+        this.mostraM = true
+    },
+    mostraGrupoN() {
+      this.mostraGrupoM(),
+        this.mostraN = true
+    },
+    mostraGrupoO() {
+      this.mostraGrupoN(),
+        this.mostraO = true
+    },
+    mostraGrupoP() {
+      this.mostraGrupoO(),
+        this.mostraP = true
+    },
     ativar() {
       this.ativo = !this.ativo;
       this.mostraGrupos = false;
@@ -158,6 +240,14 @@ export default ({
       let grupoF = document.getElementById("F");
       let grupoG = document.getElementById("G");
       let grupoH = document.getElementById("H");
+      let grupoI = document.getElementById("I");
+      let grupoJ = document.getElementById("J");
+      let grupoK = document.getElementById("K");
+      let grupoL = document.getElementById("L");
+      let grupoM = document.getElementById("M");
+      let grupoN = document.getElementById("N");
+      let grupoO = document.getElementById("O");
+      let grupoP = document.getElementById("P");
       grupoA.value = "";
       grupoB.value = "";
       grupoC.value = "";
@@ -166,6 +256,14 @@ export default ({
       grupoF.value = "";
       grupoG.value = "";
       grupoH.value = "";
+      grupoI.value = "";
+      grupoJ.value = "";
+      grupoK.value = "";
+      grupoL.value = "";
+      grupoM.value = "";
+      grupoN.value = "";
+      grupoO.value = "";
+      grupoP.value = "";
 
       let nomesJogadores = document.getElementById("nomesAtletas");
       let atletas = nomesJogadores.value.split("\n");
@@ -404,6 +502,402 @@ export default ({
           grupoH.value += atletas[qtdJogadores - 1] + "\n";
         }
       }
+      if (qtdGrupos == 12) {
+        for (let i = 0; i < (qtdJogadores - sobra); i += 12) {
+          this.mostraGrupoL();
+          grupoA.value += atletas[i] + "\n";
+          grupoB.value += atletas[i + 1] + "\n";
+          grupoC.value += atletas[i + 2] + "\n";
+          grupoD.value += atletas[i + 3] + "\n";
+          grupoE.value += atletas[i + 4] + "\n";
+          grupoF.value += atletas[i + 5] + "\n";
+          grupoG.value += atletas[i + 6] + "\n";
+          grupoH.value += atletas[i + 7] + "\n";
+          grupoI.value += atletas[i + 8] + "\n";
+          grupoJ.value += atletas[i + 9] + "\n";
+          grupoK.value += atletas[i + 10] + "\n";
+          grupoL.value += atletas[i + 11] + "\n";
+        }
+        if (sobra == 1) {
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 2) {
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 3) {
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 4) {
+          grupoI.value += atletas[qtdJogadores - 4] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 5) {
+          grupoH.value += atletas[qtdJogadores - 5] + "\n";
+          grupoI.value += atletas[qtdJogadores - 4] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 6) {
+          grupoG.value += atletas[qtdJogadores - 6] + "\n";
+          grupoH.value += atletas[qtdJogadores - 5] + "\n";
+          grupoI.value += atletas[qtdJogadores - 4] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 7) {
+          grupoF.value += atletas[qtdJogadores - 7] + "\n";
+          grupoG.value += atletas[qtdJogadores - 6] + "\n";
+          grupoH.value += atletas[qtdJogadores - 5] + "\n";
+          grupoI.value += atletas[qtdJogadores - 4] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 8) {
+          grupoE.value += atletas[qtdJogadores - 8] + "\n";
+          grupoF.value += atletas[qtdJogadores - 7] + "\n";
+          grupoG.value += atletas[qtdJogadores - 6] + "\n";
+          grupoH.value += atletas[qtdJogadores - 5] + "\n";
+          grupoI.value += atletas[qtdJogadores - 4] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 9) {
+          grupoD.value += atletas[qtdJogadores - 9] + "\n";
+          grupoE.value += atletas[qtdJogadores - 8] + "\n";
+          grupoF.value += atletas[qtdJogadores - 7] + "\n";
+          grupoG.value += atletas[qtdJogadores - 6] + "\n";
+          grupoH.value += atletas[qtdJogadores - 5] + "\n";
+          grupoI.value += atletas[qtdJogadores - 4] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 10) {
+          grupoC.value += atletas[qtdJogadores - 10] + "\n";
+          grupoD.value += atletas[qtdJogadores - 9] + "\n";
+          grupoE.value += atletas[qtdJogadores - 8] + "\n";
+          grupoF.value += atletas[qtdJogadores - 7] + "\n";
+          grupoG.value += atletas[qtdJogadores - 6] + "\n";
+          grupoH.value += atletas[qtdJogadores - 5] + "\n";
+          grupoI.value += atletas[qtdJogadores - 4] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 11) {
+          grupoB.value += atletas[qtdJogadores - 11] + "\n";
+          grupoC.value += atletas[qtdJogadores - 10] + "\n";
+          grupoD.value += atletas[qtdJogadores - 9] + "\n";
+          grupoE.value += atletas[qtdJogadores - 8] + "\n";
+          grupoF.value += atletas[qtdJogadores - 7] + "\n";
+          grupoG.value += atletas[qtdJogadores - 6] + "\n";
+          grupoH.value += atletas[qtdJogadores - 5] + "\n";
+          grupoI.value += atletas[qtdJogadores - 4] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+      }
+      if (qtdGrupos == 13) {
+        for (let i = 0; i < (qtdJogadores - sobra); i += 13) {
+          this.mostraGrupoM();
+          grupoA.value += atletas[i] + "\n";
+          grupoB.value += atletas[i + 1] + "\n";
+          grupoC.value += atletas[i + 2] + "\n";
+          grupoD.value += atletas[i + 3] + "\n";
+          grupoE.value += atletas[i + 4] + "\n";
+          grupoF.value += atletas[i + 5] + "\n";
+          grupoG.value += atletas[i + 6] + "\n";
+          grupoH.value += atletas[i + 7] + "\n";
+          grupoI.value += atletas[i + 8] + "\n";
+          grupoJ.value += atletas[i + 9] + "\n";
+          grupoK.value += atletas[i + 10] + "\n";
+          grupoL.value += atletas[i + 11] + "\n";
+          grupoM.value += atletas[i + 12] + "\n";
+        }
+        if (sobra == 1) {
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 2) {
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 3) {
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 4) {
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 5) {
+          grupoI.value += atletas[qtdJogadores - 5] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 6) {
+          grupoH.value += atletas[qtdJogadores - 6] + "\n";
+          grupoI.value += atletas[qtdJogadores - 5] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 7) {
+          grupoG.value += atletas[qtdJogadores - 7] + "\n";
+          grupoH.value += atletas[qtdJogadores - 6] + "\n";
+          grupoI.value += atletas[qtdJogadores - 5] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 8) {
+          grupoF.value += atletas[qtdJogadores - 8] + "\n";
+          grupoG.value += atletas[qtdJogadores - 7] + "\n";
+          grupoH.value += atletas[qtdJogadores - 6] + "\n";
+          grupoI.value += atletas[qtdJogadores - 5] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 9) {
+          grupoE.value += atletas[qtdJogadores - 9] + "\n";
+          grupoF.value += atletas[qtdJogadores - 8] + "\n";
+          grupoG.value += atletas[qtdJogadores - 7] + "\n";
+          grupoH.value += atletas[qtdJogadores - 6] + "\n";
+          grupoI.value += atletas[qtdJogadores - 5] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 10) {
+          grupoD.value += atletas[qtdJogadores - 10] + "\n";
+          grupoE.value += atletas[qtdJogadores - 9] + "\n";
+          grupoF.value += atletas[qtdJogadores - 8] + "\n";
+          grupoG.value += atletas[qtdJogadores - 7] + "\n";
+          grupoH.value += atletas[qtdJogadores - 6] + "\n";
+          grupoI.value += atletas[qtdJogadores - 5] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 11) {
+          grupoC.value += atletas[qtdJogadores - 11] + "\n";
+          grupoD.value += atletas[qtdJogadores - 10] + "\n";
+          grupoE.value += atletas[qtdJogadores - 9] + "\n";
+          grupoF.value += atletas[qtdJogadores - 8] + "\n";
+          grupoG.value += atletas[qtdJogadores - 7] + "\n";
+          grupoH.value += atletas[qtdJogadores - 6] + "\n";
+          grupoI.value += atletas[qtdJogadores - 5] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 12) {
+          grupoB.value += atletas[qtdJogadores - 12] + "\n";
+          grupoC.value += atletas[qtdJogadores - 11] + "\n";
+          grupoD.value += atletas[qtdJogadores - 10] + "\n";
+          grupoE.value += atletas[qtdJogadores - 9] + "\n";
+          grupoF.value += atletas[qtdJogadores - 8] + "\n";
+          grupoG.value += atletas[qtdJogadores - 7] + "\n";
+          grupoH.value += atletas[qtdJogadores - 6] + "\n";
+          grupoI.value += atletas[qtdJogadores - 5] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+       }
+       if (qtdGrupos == 16) {
+        for (let i = 0; i < (qtdJogadores - sobra); i += 16) {
+          this.mostraGrupoP();
+          grupoA.value += atletas[i] + "\n";
+          grupoB.value += atletas[i + 1] + "\n";
+          grupoC.value += atletas[i + 2] + "\n";
+          grupoD.value += atletas[i + 3] + "\n";
+          grupoE.value += atletas[i + 4] + "\n";
+          grupoF.value += atletas[i + 5] + "\n";
+          grupoG.value += atletas[i + 6] + "\n";
+          grupoH.value += atletas[i + 7] + "\n";
+          grupoI.value += atletas[i + 8] + "\n";
+          grupoJ.value += atletas[i + 9] + "\n";
+          grupoK.value += atletas[i + 10] + "\n";
+          grupoL.value += atletas[i + 11] + "\n";
+          grupoM.value += atletas[i + 12] + "\n";
+          grupoN.value += atletas[i + 12] + "\n";
+          grupoO.value += atletas[i + 12] + "\n";
+          grupoP.value += atletas[i + 12] + "\n";
+        }
+        if (sobra == 1) {
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 2) {
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 3) {
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 4) {
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 5) {
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 6) {
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 7) {
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 8) {
+          grupoI.value += atletas[qtdJogadores - 8] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 9) {
+          grupoH.value += atletas[qtdJogadores - 9] + "\n";
+          grupoI.value += atletas[qtdJogadores - 8] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 10) {
+          grupoG.value += atletas[qtdJogadores - 10] + "\n";
+          grupoH.value += atletas[qtdJogadores - 9] + "\n";
+          grupoI.value += atletas[qtdJogadores - 8] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 11) {
+          grupoF.value += atletas[qtdJogadores - 11] + "\n";
+          grupoG.value += atletas[qtdJogadores - 10] + "\n";
+          grupoH.value += atletas[qtdJogadores - 9] + "\n";
+          grupoI.value += atletas[qtdJogadores - 8] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 12) {
+          grupoE.value += atletas[qtdJogadores - 12] + "\n";
+          grupoF.value += atletas[qtdJogadores - 11] + "\n";
+          grupoG.value += atletas[qtdJogadores - 10] + "\n";
+          grupoH.value += atletas[qtdJogadores - 9] + "\n";
+          grupoI.value += atletas[qtdJogadores - 8] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 13) {
+          grupoD.value += atletas[qtdJogadores - 13] + "\n";
+          grupoE.value += atletas[qtdJogadores - 12] + "\n";
+          grupoF.value += atletas[qtdJogadores - 11] + "\n";
+          grupoG.value += atletas[qtdJogadores - 10] + "\n";
+          grupoH.value += atletas[qtdJogadores - 9] + "\n";
+          grupoI.value += atletas[qtdJogadores - 8] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 14) {
+          grupoC.value += atletas[qtdJogadores - 14] + "\n";
+          grupoD.value += atletas[qtdJogadores - 13] + "\n";
+          grupoE.value += atletas[qtdJogadores - 12] + "\n";
+          grupoF.value += atletas[qtdJogadores - 11] + "\n";
+          grupoG.value += atletas[qtdJogadores - 10] + "\n";
+          grupoH.value += atletas[qtdJogadores - 9] + "\n";
+          grupoI.value += atletas[qtdJogadores - 8] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 15) {
+          grupoB.value += atletas[qtdJogadores - 15] + "\n";
+          grupoC.value += atletas[qtdJogadores - 14] + "\n";
+          grupoD.value += atletas[qtdJogadores - 13] + "\n";
+          grupoE.value += atletas[qtdJogadores - 12] + "\n";
+          grupoF.value += atletas[qtdJogadores - 11] + "\n";
+          grupoG.value += atletas[qtdJogadores - 10] + "\n";
+          grupoH.value += atletas[qtdJogadores - 9] + "\n";
+          grupoI.value += atletas[qtdJogadores - 8] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+       }
     },
 
     sorteio() {
@@ -416,6 +910,14 @@ export default ({
       let grupoF = document.getElementById("F");
       let grupoG = document.getElementById("G");
       let grupoH = document.getElementById("H");
+      let grupoI = document.getElementById("I");
+      let grupoJ = document.getElementById("J");
+      let grupoK = document.getElementById("K");
+      let grupoL = document.getElementById("L");
+      let grupoM = document.getElementById("M");
+      let grupoN = document.getElementById("N");
+      let grupoO = document.getElementById("O");
+      let grupoP = document.getElementById("P");
       grupoA.value = "";
       grupoB.value = "";
       grupoC.value = "";
@@ -424,19 +926,17 @@ export default ({
       grupoF.value = "";
       grupoG.value = "";
       grupoH.value = "";
-
-      let grupoAArray = [];
-      let grupoBArray = [];
-      let grupoCArray = [];
-      let grupoDArray = [];
-      let grupoEArray = [];
-      let grupoFArray = [];
-      let grupoGArray = [];
-      let grupoHArray = [];
+      grupoI.value = "";
+      grupoJ.value = "";
+      grupoK.value = "";
+      grupoL.value = "";
+      grupoM.value = "";
+      grupoN.value = "";
+      grupoO.value = "";
+      grupoP.value = "";
 
       let nomesJogadores = document.getElementById("nomesAtletas");
       let atletas = nomesJogadores.value.split("\n");
-      // console.log(typeof atletas) //é um Array
       const qtdGrupos = this.selected;
       const qtdJogadores = atletas.length;
 
@@ -445,359 +945,628 @@ export default ({
         const j = Math.floor(Math.random() * (i + 1));
         [atletas[i], atletas[j]] = [atletas[j], atletas[i]];
       }
-
+      /* 
+        atletas.forEach(e => {
+          console.log(e)
+        });
+      */
       const sobra = qtdJogadores % qtdGrupos;
 
       if (qtdGrupos == 1) {
         for (let i = 0; i < (qtdJogadores - sobra); i++) {
           this.mostraGrupoA();
-          grupoAArray.push(atletas[i]);
           grupoA.value += atletas[i] + "\n";
         }
-
       }
 
       if (qtdGrupos == 2) {
         for (let i = 0; i < (qtdJogadores - sobra); i += 2) {
           this.mostraGrupoB();
-          grupoAArray.push(atletas[i]);
           grupoA.value += atletas[i] + "\n";
-          grupoBArray.push(atletas[i + 1]);
           grupoB.value += atletas[i + 1] + "\n";
         }
         if (sobra == 1) {
-          grupoBArray.push(atletas[qtdJogadores - 1]);
           grupoB.value += atletas[qtdJogadores - 1] + "\n";
         }
-        console.log(grupoAArray, grupoBArray)
       }
-
       if (qtdGrupos == 3) {
+        this.mostraGrupoC();
         for (let i = 0; i < (qtdJogadores - sobra); i += 3) {
-          this.mostraGrupoC();
-          grupoAArray.push(atletas[i]);
           grupoA.value += atletas[i] + "\n";
-          grupoBArray.push(atletas[i + 1]);
           grupoB.value += atletas[i + 1] + "\n";
-          grupoCArray.push(atletas[i + 2]);
           grupoC.value += atletas[i + 2] + "\n";
         }
         if (sobra == 1) {
-          grupoCArray.push(atletas[qtdJogadores - 1]);
           grupoC.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 2) {
-          grupoBArray.push(atletas[qtdJogadores - 2]);
           grupoB.value += atletas[qtdJogadores - 2] + "\n";
-          grupoCArray.push(atletas[qtdJogadores - 1]);
           grupoC.value += atletas[qtdJogadores - 1] + "\n";
         }
-        console.log(grupoAArray, grupoBArray, grupoCArray)
       }
-
       if (qtdGrupos == 4) {
         for (let i = 0; i < (qtdJogadores - sobra); i += 4) {
           this.mostraGrupoD();
-          grupoAArray.push(atletas[i]);
           grupoA.value += atletas[i] + "\n";
-          grupoBArray.push(atletas[i + 1]);
           grupoB.value += atletas[i + 1] + "\n";
-          grupoCArray.push(atletas[i + 2]);
           grupoC.value += atletas[i + 2] + "\n";
-          grupoDArray.push(atletas[i + 3])
           grupoD.value += atletas[i + 3] + "\n";
         }
         if (sobra == 1) {
-          grupoDArray.push(atletas[qtdJogadores - 1]);
           grupoD.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 2) {
-          grupoCArray.push(atletas[qtdJogadores - 2]);
           grupoC.value += atletas[qtdJogadores - 2] + "\n";
-          grupoDArray.push(atletas[qtdJogadores - 1]);
           grupoD.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 3) {
-          grupoBArray.push(atletas[qtdJogadores - 3]);
           grupoB.value += atletas[qtdJogadores - 3] + "\n";
-          grupoCArray.push(atletas[qtdJogadores - 2]);
           grupoC.value += atletas[qtdJogadores - 2] + "\n";
-          grupoDArray.push(atletas[qtdJogadores - 1]);
           grupoD.value += atletas[qtdJogadores - 1] + "\n";
         }
-        console.log(grupoAArray, grupoBArray, grupoCArray, grupoDArray)
       }
       if (qtdGrupos == 5) {
         for (let i = 0; i < (qtdJogadores - sobra); i += 5) {
           this.mostraGrupoE();
-          grupoAArray.push(atletas[i]);
           grupoA.value += atletas[i] + "\n";
-          grupoBArray.push(atletas[i + 1]);
           grupoB.value += atletas[i + 1] + "\n";
-          grupoCArray.push(atletas[i + 2]);
           grupoC.value += atletas[i + 2] + "\n";
-          grupoDArray.push(atletas[i + 3])
           grupoD.value += atletas[i + 3] + "\n";
-          grupoEArray.push(atletas[i + 4])
           grupoE.value += atletas[i + 4] + "\n";
         }
         if (sobra == 1) {
-          grupoEArray.push(atletas[qtdJogadores - 1]);
           grupoE.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 2) {
-          grupoDArray.push(atletas[qtdJogadores - 2]);
           grupoD.value += atletas[qtdJogadores - 2] + "\n";
-          grupoEArray.push(atletas[qtdJogadores - 1]);
           grupoE.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 3) {
-          grupoCArray.push(atletas[qtdJogadores - 3]);
           grupoC.value += atletas[qtdJogadores - 3] + "\n";
-          grupoDArray.push(atletas[qtdJogadores - 2]);
           grupoD.value += atletas[qtdJogadores - 2] + "\n";
-          grupoEArray.push(atletas[qtdJogadores - 1]);
           grupoE.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 4) {
-          grupoBArray.push(atletas[qtdJogadores - 4]);
           grupoB.value += atletas[qtdJogadores - 4] + "\n";
-          grupoCArray.push(atletas[qtdJogadores - 3]);
           grupoC.value += atletas[qtdJogadores - 3] + "\n";
-          grupoDArray.push(atletas[qtdJogadores - 2]);
           grupoD.value += atletas[qtdJogadores - 2] + "\n";
-          grupoEArray.push(atletas[qtdJogadores - 1]);
           grupoE.value += atletas[qtdJogadores - 1] + "\n";
         }
-        console.log(grupoAArray, grupoBArray, grupoCArray, grupoDArray, grupoEArray)
       }
       if (qtdGrupos == 6) {
         for (let i = 0; i < (qtdJogadores - sobra); i += 6) {
           this.mostraGrupoF();
-          grupoAArray.push(atletas[i]);
           grupoA.value += atletas[i] + "\n";
-          grupoBArray.push(atletas[i + 1]);
           grupoB.value += atletas[i + 1] + "\n";
-          grupoCArray.push(atletas[i + 2]);
           grupoC.value += atletas[i + 2] + "\n";
-          grupoDArray.push(atletas[i + 3])
           grupoD.value += atletas[i + 3] + "\n";
-          grupoEArray.push(atletas[i + 4])
           grupoE.value += atletas[i + 4] + "\n";
-          grupoFArray.push(atletas[i + 5])
           grupoF.value += atletas[i + 5] + "\n";
         }
         if (sobra == 1) {
-          grupoFArray.push(atletas[qtdJogadores - 1])
           grupoF.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 2) {
-          grupoEArray.push(atletas[qtdJogadores - 2])
           grupoE.value += atletas[qtdJogadores - 2] + "\n";
-          grupoFArray.push(atletas[qtdJogadores - 1])
           grupoF.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 3) {
-          grupoDArray.push(atletas[qtdJogadores - 3])
           grupoD.value += atletas[qtdJogadores - 3] + "\n";
-          grupoEArray.push(atletas[qtdJogadores - 2])
           grupoE.value += atletas[qtdJogadores - 2] + "\n";
-          grupoFArray.push(atletas[qtdJogadores - 1])
           grupoF.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 4) {
-          grupoCArray.push(atletas[qtdJogadores - 4])
           grupoC.value += atletas[qtdJogadores - 4] + "\n";
-          grupoDArray.push(atletas[qtdJogadores - 3])
           grupoD.value += atletas[qtdJogadores - 3] + "\n";
-          grupoEArray.push(atletas[qtdJogadores - 2])
           grupoE.value += atletas[qtdJogadores - 2] + "\n";
-          grupoFArray.push(atletas[qtdJogadores - 1])
           grupoF.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 5) {
-          grupoBArray.push(atletas[qtdJogadores - 5])
           grupoB.value += atletas[qtdJogadores - 5] + "\n";
-          grupoCArray.push(atletas[qtdJogadores - 4])
           grupoC.value += atletas[qtdJogadores - 4] + "\n";
-          grupoDArray.push(atletas[qtdJogadores - 3])
           grupoD.value += atletas[qtdJogadores - 3] + "\n";
-          grupoEArray.push(atletas[qtdJogadores - 2])
           grupoE.value += atletas[qtdJogadores - 2] + "\n";
-          grupoFArray.push(atletas[qtdJogadores - 1])
           grupoF.value += atletas[qtdJogadores - 1] + "\n";
         }
-        console.log(grupoAArray, grupoBArray, grupoCArray, grupoDArray, grupoEArray, grupoFArray)
       }
       if (qtdGrupos == 7) {
         for (let i = 0; i < (qtdJogadores - sobra); i += 7) {
           this.mostraGrupoG();
-          grupoAArray.push(atletas[i]);
           grupoA.value += atletas[i] + "\n";
-          grupoBArray.push(atletas[i + 1]);
           grupoB.value += atletas[i + 1] + "\n";
-          grupoCArray.push(atletas[i + 2]);
           grupoC.value += atletas[i + 2] + "\n";
-          grupoDArray.push(atletas[i + 3])
           grupoD.value += atletas[i + 3] + "\n";
-          grupoEArray.push(atletas[i + 4])
           grupoE.value += atletas[i + 4] + "\n";
-          grupoFArray.push(atletas[i + 5])
           grupoF.value += atletas[i + 5] + "\n";
-          grupoGArray.push(atletas[i + 6])
           grupoG.value += atletas[i + 6] + "\n";
         }
         if (sobra == 1) {
-          grupoGArray.push(atletas[qtdJogadores - 1])
           grupoG.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 2) {
-          grupoFArray.push(atletas[qtdJogadores - 2])
           grupoF.value += atletas[qtdJogadores - 2] + "\n";
-          grupoGArray.push(atletas[qtdJogadores - 1])
           grupoG.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 3) {
-          grupoEArray.push(atletas[qtdJogadores - 3])
           grupoE.value += atletas[qtdJogadores - 3] + "\n";
-          grupoFArray.push(atletas[qtdJogadores - 2])
           grupoF.value += atletas[qtdJogadores - 2] + "\n";
-          grupoGArray.push(atletas[qtdJogadores - 1])
           grupoG.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 4) {
-          grupoDArray.push(atletas[qtdJogadores - 4])
           grupoD.value += atletas[qtdJogadores - 4] + "\n";
-          grupoEArray.push(atletas[qtdJogadores - 3])
           grupoE.value += atletas[qtdJogadores - 3] + "\n";
-          grupoFArray.push(atletas[qtdJogadores - 2])
           grupoF.value += atletas[qtdJogadores - 2] + "\n";
-          grupoGArray.push(atletas[qtdJogadores - 1])
           grupoG.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 5) {
-          grupoCArray.push(atletas[qtdJogadores - 5])
           grupoC.value += atletas[qtdJogadores - 5] + "\n";
-          grupoDArray.push(atletas[qtdJogadores - 4])
           grupoD.value += atletas[qtdJogadores - 4] + "\n";
-          grupoEArray.push(atletas[qtdJogadores - 3])
           grupoE.value += atletas[qtdJogadores - 3] + "\n";
-          grupoFArray.push(atletas[qtdJogadores - 2])
           grupoF.value += atletas[qtdJogadores - 2] + "\n";
-          grupoGArray.push(atletas[qtdJogadores - 1])
           grupoG.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 6) {
-          grupoBArray.push(atletas[qtdJogadores - 6])
           grupoB.value += atletas[qtdJogadores - 6] + "\n";
-          grupoCArray.push(atletas[qtdJogadores - 5])
           grupoC.value += atletas[qtdJogadores - 5] + "\n";
-          grupoDArray.push(atletas[qtdJogadores - 4])
           grupoD.value += atletas[qtdJogadores - 4] + "\n";
-          grupoEArray.push(atletas[qtdJogadores - 3])
           grupoE.value += atletas[qtdJogadores - 3] + "\n";
-          grupoFArray.push(atletas[qtdJogadores - 2])
           grupoF.value += atletas[qtdJogadores - 2] + "\n";
-          grupoGArray.push(atletas[qtdJogadores - 1])
           grupoG.value += atletas[qtdJogadores - 1] + "\n";
         }
-        console.log(grupoAArray, grupoBArray, grupoCArray, grupoDArray, grupoEArray, grupoFArray, grupoGArray)
       }
       if (qtdGrupos == 8) {
         for (let i = 0; i < (qtdJogadores - sobra); i += 8) {
           this.mostraGrupoH();
-          grupoAArray.push(atletas[i]);
           grupoA.value += atletas[i] + "\n";
-          grupoBArray.push(atletas[i + 1]);
           grupoB.value += atletas[i + 1] + "\n";
-          grupoCArray.push(atletas[i + 2]);
           grupoC.value += atletas[i + 2] + "\n";
-          grupoDArray.push(atletas[i + 3])
           grupoD.value += atletas[i + 3] + "\n";
-          grupoEArray.push(atletas[i + 4])
           grupoE.value += atletas[i + 4] + "\n";
-          grupoFArray.push(atletas[i + 5])
           grupoF.value += atletas[i + 5] + "\n";
-          grupoGArray.push(atletas[i + 6])
           grupoG.value += atletas[i + 6] + "\n";
-          grupoHArray.push(atletas[i + 7])
           grupoH.value += atletas[i + 7] + "\n";
         }
         if (sobra == 1) {
-          grupoHArray.push(atletas[qtdJogadores - 1])
           grupoH.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 2) {
-          grupoGArray.push(atletas[qtdJogadores - 2])
           grupoG.value += atletas[qtdJogadores - 2] + "\n";
-          grupoHArray.push(atletas[qtdJogadores - 1])
           grupoH.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 3) {
-          grupoFArray.push(atletas[qtdJogadores - 3])
           grupoF.value += atletas[qtdJogadores - 3] + "\n";
-          grupoGArray.push(atletas[qtdJogadores - 2])
           grupoG.value += atletas[qtdJogadores - 2] + "\n";
-          grupoHArray.push(atletas[qtdJogadores - 1])
           grupoH.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 4) {
-          grupoEArray.push(atletas[qtdJogadores - 4])
           grupoE.value += atletas[qtdJogadores - 4] + "\n";
-          grupoFArray.push(atletas[qtdJogadores - 3])
           grupoF.value += atletas[qtdJogadores - 3] + "\n";
-          grupoGArray.push(atletas[qtdJogadores - 2])
           grupoG.value += atletas[qtdJogadores - 2] + "\n";
-          grupoHArray.push(atletas[qtdJogadores - 1])
           grupoH.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 5) {
-          grupoDArray.push(atletas[qtdJogadores - 5])
           grupoD.value += atletas[qtdJogadores - 5] + "\n";
-          grupoEArray.push(atletas[qtdJogadores - 4])
           grupoE.value += atletas[qtdJogadores - 4] + "\n";
-          grupoFArray.push(atletas[qtdJogadores - 3])
           grupoF.value += atletas[qtdJogadores - 3] + "\n";
-          grupoGArray.push(atletas[qtdJogadores - 2])
           grupoG.value += atletas[qtdJogadores - 2] + "\n";
-          grupoHArray.push(atletas[qtdJogadores - 1])
           grupoH.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 6) {
-          grupoCArray.push(atletas[qtdJogadores - 6])
           grupoC.value += atletas[qtdJogadores - 6] + "\n";
-          grupoDArray.push(atletas[qtdJogadores - 5])
           grupoD.value += atletas[qtdJogadores - 5] + "\n";
-          grupoEArray.push(atletas[qtdJogadores - 4])
           grupoE.value += atletas[qtdJogadores - 4] + "\n";
-          grupoFArray.push(atletas[qtdJogadores - 3])
           grupoF.value += atletas[qtdJogadores - 3] + "\n";
-          grupoGArray.push(atletas[qtdJogadores - 2])
           grupoG.value += atletas[qtdJogadores - 2] + "\n";
-          grupoHArray.push(atletas[qtdJogadores - 1])
           grupoH.value += atletas[qtdJogadores - 1] + "\n";
         }
         if (sobra == 7) {
-          grupoBArray.push(atletas[qtdJogadores - 7])
           grupoB.value += atletas[qtdJogadores - 7] + "\n";
-          grupoCArray.push(atletas[qtdJogadores - 6])
           grupoC.value += atletas[qtdJogadores - 6] + "\n";
-          grupoDArray.push(atletas[qtdJogadores - 5])
           grupoD.value += atletas[qtdJogadores - 5] + "\n";
-          grupoEArray.push(atletas[qtdJogadores - 4])
           grupoE.value += atletas[qtdJogadores - 4] + "\n";
-          grupoFArray.push(atletas[qtdJogadores - 3])
           grupoF.value += atletas[qtdJogadores - 3] + "\n";
-          grupoGArray.push(atletas[qtdJogadores - 2])
           grupoG.value += atletas[qtdJogadores - 2] + "\n";
-          grupoHArray.push(atletas[qtdJogadores - 1])
           grupoH.value += atletas[qtdJogadores - 1] + "\n";
         }
-        console.log(grupoAArray, grupoBArray, grupoCArray, grupoDArray, grupoEArray, grupoFArray, grupoGArray, grupoHArray)
       }
-
+        if (qtdGrupos == 12) {
+        for (let i = 0; i < (qtdJogadores - sobra); i += 12) {
+          this.mostraGrupoL();
+          grupoA.value += atletas[i] + "\n";
+          grupoB.value += atletas[i + 1] + "\n";
+          grupoC.value += atletas[i + 2] + "\n";
+          grupoD.value += atletas[i + 3] + "\n";
+          grupoE.value += atletas[i + 4] + "\n";
+          grupoF.value += atletas[i + 5] + "\n";
+          grupoG.value += atletas[i + 6] + "\n";
+          grupoH.value += atletas[i + 7] + "\n";
+          grupoI.value += atletas[i + 8] + "\n";
+          grupoJ.value += atletas[i + 9] + "\n";
+          grupoK.value += atletas[i + 10] + "\n";
+          grupoL.value += atletas[i + 11] + "\n";
+        }
+        if (sobra == 1) {
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 2) {
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 3) {
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 4) {
+          grupoI.value += atletas[qtdJogadores - 4] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 5) {
+          grupoH.value += atletas[qtdJogadores - 5] + "\n";
+          grupoI.value += atletas[qtdJogadores - 4] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 6) {
+          grupoG.value += atletas[qtdJogadores - 6] + "\n";
+          grupoH.value += atletas[qtdJogadores - 5] + "\n";
+          grupoI.value += atletas[qtdJogadores - 4] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 7) {
+          grupoF.value += atletas[qtdJogadores - 7] + "\n";
+          grupoG.value += atletas[qtdJogadores - 6] + "\n";
+          grupoH.value += atletas[qtdJogadores - 5] + "\n";
+          grupoI.value += atletas[qtdJogadores - 4] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 8) {
+          grupoE.value += atletas[qtdJogadores - 8] + "\n";
+          grupoF.value += atletas[qtdJogadores - 7] + "\n";
+          grupoG.value += atletas[qtdJogadores - 6] + "\n";
+          grupoH.value += atletas[qtdJogadores - 5] + "\n";
+          grupoI.value += atletas[qtdJogadores - 4] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 9) {
+          grupoD.value += atletas[qtdJogadores - 9] + "\n";
+          grupoE.value += atletas[qtdJogadores - 8] + "\n";
+          grupoF.value += atletas[qtdJogadores - 7] + "\n";
+          grupoG.value += atletas[qtdJogadores - 6] + "\n";
+          grupoH.value += atletas[qtdJogadores - 5] + "\n";
+          grupoI.value += atletas[qtdJogadores - 4] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 10) {
+          grupoC.value += atletas[qtdJogadores - 10] + "\n";
+          grupoD.value += atletas[qtdJogadores - 9] + "\n";
+          grupoE.value += atletas[qtdJogadores - 8] + "\n";
+          grupoF.value += atletas[qtdJogadores - 7] + "\n";
+          grupoG.value += atletas[qtdJogadores - 6] + "\n";
+          grupoH.value += atletas[qtdJogadores - 5] + "\n";
+          grupoI.value += atletas[qtdJogadores - 4] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 11) {
+          grupoB.value += atletas[qtdJogadores - 11] + "\n";
+          grupoC.value += atletas[qtdJogadores - 10] + "\n";
+          grupoD.value += atletas[qtdJogadores - 9] + "\n";
+          grupoE.value += atletas[qtdJogadores - 8] + "\n";
+          grupoF.value += atletas[qtdJogadores - 7] + "\n";
+          grupoG.value += atletas[qtdJogadores - 6] + "\n";
+          grupoH.value += atletas[qtdJogadores - 5] + "\n";
+          grupoI.value += atletas[qtdJogadores - 4] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 3] + "\n";
+          grupoK.value += atletas[qtdJogadores - 2] + "\n";
+          grupoL.value += atletas[qtdJogadores - 1] + "\n";
+        }
+       }
+       if (qtdGrupos == 13) {
+        for (let i = 0; i < (qtdJogadores - sobra); i += 13) {
+          this.mostraGrupoM();
+          grupoA.value += atletas[i] + "\n";
+          grupoB.value += atletas[i + 1] + "\n";
+          grupoC.value += atletas[i + 2] + "\n";
+          grupoD.value += atletas[i + 3] + "\n";
+          grupoE.value += atletas[i + 4] + "\n";
+          grupoF.value += atletas[i + 5] + "\n";
+          grupoG.value += atletas[i + 6] + "\n";
+          grupoH.value += atletas[i + 7] + "\n";
+          grupoI.value += atletas[i + 8] + "\n";
+          grupoJ.value += atletas[i + 9] + "\n";
+          grupoK.value += atletas[i + 10] + "\n";
+          grupoL.value += atletas[i + 11] + "\n";
+          grupoM.value += atletas[i + 12] + "\n";
+        }
+        if (sobra == 1) {
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 2) {
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 3) {
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 4) {
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 5) {
+          grupoI.value += atletas[qtdJogadores - 5] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 6) {
+          grupoH.value += atletas[qtdJogadores - 6] + "\n";
+          grupoI.value += atletas[qtdJogadores - 5] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 7) {
+          grupoG.value += atletas[qtdJogadores - 7] + "\n";
+          grupoH.value += atletas[qtdJogadores - 6] + "\n";
+          grupoI.value += atletas[qtdJogadores - 5] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 8) {
+          grupoF.value += atletas[qtdJogadores - 8] + "\n";
+          grupoG.value += atletas[qtdJogadores - 7] + "\n";
+          grupoH.value += atletas[qtdJogadores - 6] + "\n";
+          grupoI.value += atletas[qtdJogadores - 5] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 9) {
+          grupoE.value += atletas[qtdJogadores - 9] + "\n";
+          grupoF.value += atletas[qtdJogadores - 8] + "\n";
+          grupoG.value += atletas[qtdJogadores - 7] + "\n";
+          grupoH.value += atletas[qtdJogadores - 6] + "\n";
+          grupoI.value += atletas[qtdJogadores - 5] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 10) {
+          grupoD.value += atletas[qtdJogadores - 10] + "\n";
+          grupoE.value += atletas[qtdJogadores - 9] + "\n";
+          grupoF.value += atletas[qtdJogadores - 8] + "\n";
+          grupoG.value += atletas[qtdJogadores - 7] + "\n";
+          grupoH.value += atletas[qtdJogadores - 6] + "\n";
+          grupoI.value += atletas[qtdJogadores - 5] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 11) {
+          grupoC.value += atletas[qtdJogadores - 11] + "\n";
+          grupoD.value += atletas[qtdJogadores - 10] + "\n";
+          grupoE.value += atletas[qtdJogadores - 9] + "\n";
+          grupoF.value += atletas[qtdJogadores - 8] + "\n";
+          grupoG.value += atletas[qtdJogadores - 7] + "\n";
+          grupoH.value += atletas[qtdJogadores - 6] + "\n";
+          grupoI.value += atletas[qtdJogadores - 5] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 12) {
+          grupoB.value += atletas[qtdJogadores - 12] + "\n";
+          grupoC.value += atletas[qtdJogadores - 11] + "\n";
+          grupoD.value += atletas[qtdJogadores - 10] + "\n";
+          grupoE.value += atletas[qtdJogadores - 9] + "\n";
+          grupoF.value += atletas[qtdJogadores - 8] + "\n";
+          grupoG.value += atletas[qtdJogadores - 7] + "\n";
+          grupoH.value += atletas[qtdJogadores - 6] + "\n";
+          grupoI.value += atletas[qtdJogadores - 5] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 4] + "\n";
+          grupoK.value += atletas[qtdJogadores - 3] + "\n";
+          grupoL.value += atletas[qtdJogadores - 2] + "\n";
+          grupoM.value += atletas[qtdJogadores - 1] + "\n";
+        }
+       }
+       if (qtdGrupos == 16) {
+        for (let i = 0; i < (qtdJogadores - sobra); i += 16) {
+          this.mostraGrupoP();
+          grupoA.value += atletas[i] + "\n";
+          grupoB.value += atletas[i + 1] + "\n";
+          grupoC.value += atletas[i + 2] + "\n";
+          grupoD.value += atletas[i + 3] + "\n";
+          grupoE.value += atletas[i + 4] + "\n";
+          grupoF.value += atletas[i + 5] + "\n";
+          grupoG.value += atletas[i + 6] + "\n";
+          grupoH.value += atletas[i + 7] + "\n";
+          grupoI.value += atletas[i + 8] + "\n";
+          grupoJ.value += atletas[i + 9] + "\n";
+          grupoK.value += atletas[i + 10] + "\n";
+          grupoL.value += atletas[i + 11] + "\n";
+          grupoM.value += atletas[i + 12] + "\n";
+          grupoN.value += atletas[i + 12] + "\n";
+          grupoO.value += atletas[i + 12] + "\n";
+          grupoP.value += atletas[i + 12] + "\n";
+        }
+        if (sobra == 1) {
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 2) {
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 3) {
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 4) {
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 5) {
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 6) {
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 7) {
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 8) {
+          grupoI.value += atletas[qtdJogadores - 8] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 9) {
+          grupoH.value += atletas[qtdJogadores - 9] + "\n";
+          grupoI.value += atletas[qtdJogadores - 8] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 10) {
+          grupoG.value += atletas[qtdJogadores - 10] + "\n";
+          grupoH.value += atletas[qtdJogadores - 9] + "\n";
+          grupoI.value += atletas[qtdJogadores - 8] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 11) {
+          grupoF.value += atletas[qtdJogadores - 11] + "\n";
+          grupoG.value += atletas[qtdJogadores - 10] + "\n";
+          grupoH.value += atletas[qtdJogadores - 9] + "\n";
+          grupoI.value += atletas[qtdJogadores - 8] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 12) {
+          grupoE.value += atletas[qtdJogadores - 12] + "\n";
+          grupoF.value += atletas[qtdJogadores - 11] + "\n";
+          grupoG.value += atletas[qtdJogadores - 10] + "\n";
+          grupoH.value += atletas[qtdJogadores - 9] + "\n";
+          grupoI.value += atletas[qtdJogadores - 8] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 13) {
+          grupoD.value += atletas[qtdJogadores - 13] + "\n";
+          grupoE.value += atletas[qtdJogadores - 12] + "\n";
+          grupoF.value += atletas[qtdJogadores - 11] + "\n";
+          grupoG.value += atletas[qtdJogadores - 10] + "\n";
+          grupoH.value += atletas[qtdJogadores - 9] + "\n";
+          grupoI.value += atletas[qtdJogadores - 8] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 14) {
+          grupoC.value += atletas[qtdJogadores - 14] + "\n";
+          grupoD.value += atletas[qtdJogadores - 13] + "\n";
+          grupoE.value += atletas[qtdJogadores - 12] + "\n";
+          grupoF.value += atletas[qtdJogadores - 11] + "\n";
+          grupoG.value += atletas[qtdJogadores - 10] + "\n";
+          grupoH.value += atletas[qtdJogadores - 9] + "\n";
+          grupoI.value += atletas[qtdJogadores - 8] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+        if (sobra == 15) {
+          grupoB.value += atletas[qtdJogadores - 15] + "\n";
+          grupoC.value += atletas[qtdJogadores - 14] + "\n";
+          grupoD.value += atletas[qtdJogadores - 13] + "\n";
+          grupoE.value += atletas[qtdJogadores - 12] + "\n";
+          grupoF.value += atletas[qtdJogadores - 11] + "\n";
+          grupoG.value += atletas[qtdJogadores - 10] + "\n";
+          grupoH.value += atletas[qtdJogadores - 9] + "\n";
+          grupoI.value += atletas[qtdJogadores - 8] + "\n";
+          grupoJ.value += atletas[qtdJogadores - 7] + "\n";
+          grupoK.value += atletas[qtdJogadores - 6] + "\n";
+          grupoL.value += atletas[qtdJogadores - 5] + "\n";
+          grupoM.value += atletas[qtdJogadores - 4] + "\n";
+          grupoN.value += atletas[qtdJogadores - 3] + "\n";
+          grupoO.value += atletas[qtdJogadores - 2] + "\n";
+          grupoP.value += atletas[qtdJogadores - 1] + "\n";
+        }
+       }
+      }
     }
 
-  }
-})
+  })
 </script>
